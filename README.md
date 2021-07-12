@@ -1,4 +1,7 @@
 # finpandas
+NOTE: This package is currently under development and we cannot yet guarantee the accuracy of the outputted data and metrics. 
+
+
 Toolkit for U.S. public sector financial analysis. Compare multiple companies across multiple years, in seconds, without having to download data locally. 
 
 ## About
