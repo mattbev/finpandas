@@ -6,6 +6,10 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+docs_extras=[
+    'Sphinx >= 3.0.0'
+]
+
 setuptools.setup(
     name="finpandas",
     version="0.1.0",
@@ -14,7 +18,7 @@ setuptools.setup(
     description="U.S. Public Financial Analysis Tools",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://mattbeveridge.com/blacktip-docs/",
+    url="https://finpandas.readthedocs.io/en/latest/",
     keywords=["SEC", "EDGAR", "finance", "10-K", "10-Q", "analytics", "investing"],
     install_requires=[
         "pandas",
@@ -22,6 +26,9 @@ setuptools.setup(
         "sqlalchemy==1.4.*",
         "dpath"
     ],
+    extras_require={
+        'docs': docs_extras
+    },
     license="MIT",
     packages=setuptools.find_packages(),
     include_package_data=True,
