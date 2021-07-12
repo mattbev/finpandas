@@ -17,13 +17,13 @@ sys.path.insert(0, os.path.abspath('../'))
 
 import sphinx.ext.apidoc as apidoc
 def setup(app):
-    # app.add_javascript('copybutton.js')
+    app.add_javascript('copybutton.js')
     apidoc.main(
         ['-f', #Overwrite existing files
         '-T', #Create table of contents
         '-e', #Give modules their own pages
         #'-E', #user docstring headers
-        #'-M', #Modules first
+        '-M', #Modules first
         '-o', #Output the files to:
         './_autogen/', #Output Directory
         './../finpandas', #Main Module directory

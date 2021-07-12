@@ -3,30 +3,29 @@ finpandas Software Reference Manual
 
 Public financial analysis tools in Python. 
 
-Install
-^^^^^^^
 
-`finpandas package <https://pypi.org/project/finpandas/>`
----------------------------------------------------------
+.. currentmodule::
+   finpandas
 
-:Version: |release|
-
-.. code-block:: bash
-
-   pip install finpandas
 
 .. toctree::
+   :glob:
    :maxdepth: 2
-   :caption: Documentation
+   :caption: Getting started:
 
-   modules
-   license
-   contact
+   _pages/*
 
+
+.. toctree::
+   :glob:
+   :maxdepth: 2
+   :caption: Packages:
+
+   _autogen/finpandas*
 
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`
