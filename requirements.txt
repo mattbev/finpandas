@@ -2,6 +2,7 @@ pandas
 pymysql
 sqlalchemy==1.4.*
 dpath
+regex
 
 requests
 tqdm
