@@ -77,11 +77,10 @@ class Fundamentals(DatabaseConnection):
         Example:
             Querying 10-Q reports for Apple Inc.::
 
-                instance = Fundamentals(username, password)
-                df = instance.query_10Q("AAPL", 2019)
-                df = instance.query_10Q("AAPL", [2018, 2019])
-                df = instance.query_10Q("AAPL", (2019, "q1"))
-                df = instance.query_10Q("AAPL", [(2019, "q1"), (2019, "q2")]
+                df = instance.ten_q("AAPL", 2019)
+                df = instance.ten_q("AAPL", [2018, 2019])
+                df = instance.ten_q("AAPL", (2019, "q1"))
+                df = instance.ten_q("AAPL", [(2019, "q1"), (2019, "q2")]
         """
         cik = ticker_or_cik_parser(ticker_or_cik)
 
