@@ -1,5 +1,5 @@
 finpandas Software Reference Manual
-===========================================
+===================================
 
 Public financial analysis tools in Python. 
 
