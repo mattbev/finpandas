@@ -1,0 +1,11 @@
+pandas
+pymysql
+sqlalchemy==1.4.*
+dpath
+
+requests
+tqdm
+yfinance
+concurrencytest
+testtools
+python-subunit
