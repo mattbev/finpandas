@@ -6,14 +6,21 @@ Toolkit for U.S. public sector financial analysis. Compare multiple companies ac
 
 **stocks:** for historical stock pricing information on United States public companies.
 
-[Documentation](https://mattbeveridge.com/blacktip-docs)
+[Documentation](https://finpandas.readthedocs.io/en/latest/index.html)
 
 ## Installation
+`finpandas` can be installed using `pip`:
+```
+git clone <this repo>
+cd finpandas 
+pip install .
+```
+<!-- SOON:
 `finpandas` can be installed from PyPI using `pip`:
 ```
 pip install finpandas
 ```
-and from source [here](): TODO
+and from source [here](): TODO -->
 
 ## Usage
 The workflow is the following:
