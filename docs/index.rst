@@ -6,8 +6,8 @@ Public financial analysis tools in Python.
 Install
 ^^^^^^^
 
-`finpandas package <https://pypi.org/project/finpandas/>`_
---------------------------------------------------------
+`finpandas package <https://pypi.org/project/finpandas/>`
+---------------------------------------------------------
 
 :Version: |release|
 
