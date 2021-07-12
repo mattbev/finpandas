@@ -7,7 +7,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 docs_extras=[
-    'Sphinx >= 3.0.0'
+    'sphinx==3.4.1',
+    'docutils'
 ]
 
 setuptools.setup(
@@ -24,7 +25,8 @@ setuptools.setup(
         "pandas",
         "pymysql",
         "sqlalchemy==1.4.*",
-        "dpath"
+        "dpath",
+        "regex"
     ],
     extras_require={
         'docs': docs_extras

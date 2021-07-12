@@ -15,7 +15,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath('../'))
 
-import sphinx.apidoc
+import sphinx.ext.apidoc
 def setup(app):
     # app.add_javascript('copybutton.js')
     sphinx.apidoc.main(['-f', #Overwrite existing files
