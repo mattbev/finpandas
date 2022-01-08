@@ -6,9 +6,10 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-docs_extras=[
-    'sphinx==3.4.1',
-    'docutils'
+docs_extras = [
+    "sphinx==3.4.1",
+    "docutils",
+    "sphinx-rtd-theme"
 ]
 
 setuptools.setup(
@@ -19,18 +20,10 @@ setuptools.setup(
     description="U.S. Public Financial Analysis Tools",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://finpandas.readthedocs.io/en/latest/",
+    url="https://mattbeveridge.com/finpandas",
     keywords=["SEC", "EDGAR", "finance", "10-K", "10-Q", "analytics", "investing"],
-    install_requires=[
-        "pandas",
-        "pymysql",
-        "sqlalchemy==1.4.*",
-        "dpath",
-        "regex"
-    ],
-    extras_require={
-        'docs': docs_extras
-    },
+    install_requires=["pandas", "pymysql", "sqlalchemy==1.4.*", "dpath", "regex"],
+    extras_require={"docs": docs_extras},
     license="MIT",
     packages=setuptools.find_packages(),
     include_package_data=True,
@@ -40,5 +33,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires=">=3.6",
 )

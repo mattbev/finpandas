@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>finpandas.utils.errors &mdash; finpandas  documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> finpandas
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../finpandas.html">finpandas package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">finpandas</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>finpandas.utils.errors</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for finpandas.utils.errors</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Custom errors.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TickerNotFoundError"><a class="viewcode-back" href="../../../finpandas.utils.html#finpandas.utils.errors.TickerNotFoundError">[docs]</a><span class="k">class</span> <span class="nc">TickerNotFoundError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exception raised when the inputted ticker is not found</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ticker (str): the ticker</span>
+<span class="sd">        message (str, optional): printed output. Defaults to</span>
+<span class="sd">            &quot;the inputted ticker &#39;{ticker}&#39; could not be found&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticker</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;inputted ticker &#39;</span><span class="si">{ticker}</span><span class="s2">&#39; could not be found&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticker</span> <span class="o">=</span> <span class="n">ticker</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ticker</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ticker</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NestedDepthError"><a class="viewcode-back" href="../../../finpandas.utils.html#finpandas.utils.errors.NestedDepthError">[docs]</a><span class="k">class</span> <span class="nc">NestedDepthError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exception raised when the inputted nested iterable is the incorrect depth</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        input_depth (int): the depth of the inputted iterable</span>
+<span class="sd">        correct_depth (int): the correct depth of the inputted iterable</span>
+<span class="sd">        message (str, optional): printed output. Defaults to</span>
+<span class="sd">            &quot;the nested depth of the iterable ({input_depth}) is invalid</span>
+<span class="sd">            for required depth ({correct_depth})&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_depth</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">correct_depth</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span>
+        <span class="n">message</span><span class="o">=</span><span class="s2">&quot;iterable depth of (</span><span class="si">{input_depth}</span><span class="s2">) invalid for required depth (</span><span class="si">{correct_depth}</span><span class="s2">)&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_depth</span> <span class="o">=</span> <span class="n">input_depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">correct_depth</span> <span class="o">=</span> <span class="n">correct_depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">input_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_depth</span><span class="p">,</span>
+            <span class="n">correct_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">correct_depth</span>
+            <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matthew Beveridge.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

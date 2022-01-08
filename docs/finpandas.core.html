@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>finpandas.core package &mdash; finpandas  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="finpandas.dataframes package" href="finpandas.dataframes.html" />
+    <link rel="prev" title="finpandas package" href="finpandas.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> finpandas
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="finpandas.html">finpandas package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="finpandas.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">finpandas.core package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-finpandas.core.connections">finpandas.core.connections module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-finpandas.core.datasources">finpandas.core.datasources module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-finpandas.core">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="finpandas.dataframes.html">finpandas.dataframes package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finpandas.resources.html">finpandas.resources package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finpandas.utils.html">finpandas.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finpandas.html#module-finpandas">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">finpandas</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="finpandas.html">finpandas package</a> &raquo;</li>
+      <li>finpandas.core package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/finpandas.core.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="finpandas-core-package">
+<h1>finpandas.core package<a class="headerlink" href="#finpandas-core-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-finpandas.core.connections">
+<span id="finpandas-core-connections-module"></span><h2>finpandas.core.connections module<a class="headerlink" href="#module-finpandas.core.connections" title="Permalink to this headline">¶</a></h2>
+<p>finpandas base module.</p>
+<dl class="py class">
+<dt id="finpandas.core.connections.DatabaseConnection">
+<em class="property">class </em><code class="sig-prename descclassname">finpandas.core.connections.</code><code class="sig-name descname">DatabaseConnection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">username</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'finpandas'</span></em>, <em class="sig-param"><span class="n">password</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">_host</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'database-blacktip.cpeql2xeyjqq.us-east-2.rds.amazonaws.com'</span></em>, <em class="sig-param"><span class="n">_port</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">3306</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/finpandas/core/connections.html#DatabaseConnection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.core.connections.DatabaseConnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Establish a connection with the database.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username (str): your username
+password (str): your password</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="finpandas.core.connections.DatabaseConnection._commitdb">
+<code class="sig-name descname">_commitdb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">dataframe</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/finpandas/core/connections.html#DatabaseConnection._commitdb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.core.connections.DatabaseConnection._commitdb" title="Permalink to this definition">¶</a></dt>
+<dd><p>commit to the database</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>table_name (str): the name of the table to commit to
+dataframe (pd.DataFrame): the data to commit to the table</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.core.connections.DatabaseConnection._create_engine">
+<code class="sig-name descname">_create_engine</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; sqlalchemy.engine.base.Engine<a class="reference internal" href="_modules/finpandas/core/connections.html#DatabaseConnection._create_engine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.core.connections.DatabaseConnection._create_engine" title="Permalink to this definition">¶</a></dt>
+<dd><p>establish connection to MySQL database</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>sqlalchemy.engine.Engine: SQLAlchemy engine instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="finpandas.core.connections.DatabaseConnection._host">
+<code class="sig-name descname">_host</code><em class="property">: str</em><em class="property"> = 'database-blacktip.cpeql2xeyjqq.us-east-2.rds.amazonaws.com'</em><a class="headerlink" href="#finpandas.core.connections.DatabaseConnection._host" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="finpandas.core.connections.DatabaseConnection._port">
+<code class="sig-name descname">_port</code><em class="property">: int</em><em class="property"> = 3306</em><a class="headerlink" href="#finpandas.core.connections.DatabaseConnection._port" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="finpandas.core.connections.DatabaseConnection.database">
+<code class="sig-name descname">database</code><em class="property">: str</em><a class="headerlink" href="#finpandas.core.connections.DatabaseConnection.database" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.core.connections.DatabaseConnection.dispose">
+<code class="sig-name descname">dispose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/finpandas/core/connections.html#DatabaseConnection.dispose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.core.connections.DatabaseConnection.dispose" title="Permalink to this definition">¶</a></dt>
+<dd><p>closes the database connection</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="finpandas.core.connections.DatabaseConnection.password">
+<code class="sig-name descname">password</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#finpandas.core.connections.DatabaseConnection.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.core.connections.DatabaseConnection.query">
+<code class="sig-name descname">query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">command</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/finpandas/core/connections.html#DatabaseConnection.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.core.connections.DatabaseConnection.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>query information directly from the database</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>command (str): the string mySQL command to execute</p>
+</dd>
+<dt>Returns:</dt><dd><p>sqlalchemy.engine.Result: the results of the query</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="finpandas.core.connections.DatabaseConnection.username">
+<code class="sig-name descname">username</code><em class="property">: str</em><em class="property"> = 'finpandas'</em><a class="headerlink" href="#finpandas.core.connections.DatabaseConnection.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-finpandas.core.datasources">
+<span id="finpandas-core-datasources-module"></span><h2>finpandas.core.datasources module<a class="headerlink" href="#module-finpandas.core.datasources" title="Permalink to this headline">¶</a></h2>
+<p>Used for analysis of public companies filing with the
+United States SEC.</p>
+<dl class="py class">
+<dt id="finpandas.core.datasources.Fundamentals">
+<em class="property">class </em><code class="sig-prename descclassname">finpandas.core.datasources.</code><code class="sig-name descname">Fundamentals</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'xbrl'</span></em>, <em class="sig-param"><span class="n">username</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'finpandas'</span></em>, <em class="sig-param"><span class="n">password</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">_host</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'database-blacktip.cpeql2xeyjqq.us-east-2.rds.amazonaws.com'</span></em>, <em class="sig-param"><span class="n">_port</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">3306</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/finpandas/core/datasources.html#Fundamentals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.core.datasources.Fundamentals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finpandas.core.connections.DatabaseConnection" title="finpandas.core.connections.DatabaseConnection"><code class="xref py py-class docutils literal notranslate"><span class="pre">finpandas.core.connections.DatabaseConnection</span></code></a></p>
+<p>Fundamentals API</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>database (str, optional): database to connect to. Defaults to ‘xbrl’.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="finpandas.core.datasources.Fundamentals.database">
+<code class="sig-name descname">database</code><em class="property">: str</em><em class="property"> = 'xbrl'</em><a class="headerlink" href="#finpandas.core.datasources.Fundamentals.database" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.core.datasources.Fundamentals.ten_k">
+<code class="sig-name descname">ten_k</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker_or_cik</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">years</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>int<span class="p">, </span>Iterable<span class="p">[</span>int<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="finpandas.dataframes.html#finpandas.dataframes.forms.Form10K" title="finpandas.dataframes.forms.Form10K">finpandas.dataframes.forms.Form10K</a><a class="reference internal" href="_modules/finpandas/core/datasources.html#Fundamentals.ten_k"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.core.datasources.Fundamentals.ten_k" title="Permalink to this definition">¶</a></dt>
+<dd><p>get company 10-Ks for selected years</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>ticker_or_cik (Union[str,int]): company’s ticker or SEC issued Central Index Key (CIK)
+years (Union[int,Iterable[int]]): a year or iterable of years of interest</p>
+</dd>
+<dt>Returns:</dt><dd><p>Form10K: a representation of the company’s 10Ks</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.core.datasources.Fundamentals.ten_q">
+<code class="sig-name descname">ten_q</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker_or_cik</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">periods</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>int<span class="p">, </span>Iterable<span class="p">[</span>int<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span><span class="p">, </span>Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span><span class="p">]</span><span class="p">, </span>Iterable<span class="p">[</span>Tuple<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span><span class="p">, </span>Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span><span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="finpandas.dataframes.html#finpandas.dataframes.forms.Form10Q" title="finpandas.dataframes.forms.Form10Q">finpandas.dataframes.forms.Form10Q</a><a class="reference internal" href="_modules/finpandas/core/datasources.html#Fundamentals.ten_q"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.core.datasources.Fundamentals.ten_q" title="Permalink to this definition">¶</a></dt>
+<dd><p>get company 10-Qs for selected periods</p>
+<dl>
+<dt>Args:</dt><dd><p>ticker_or_cik (Union[str,int]): company’s ticker or SEC issued Central Index Key (CIK)
+periods (Union[int,Iterable[int],Tuple[Union[str,int],Union[str,int]],                Iterable[Tuple[Union[str,int],Union[str,int]]]]): the year of interest, will get all</p>
+<blockquote>
+<div><p>quarters; years of interest, will get all quarters; (year, quarter) pair;
+(year, quarter) pairs of interest</p>
+</div></blockquote>
+</dd>
+<dt>Raises:</dt><dd><p>NestedDepthError: inputted periods is not one of the correct formats</p>
+</dd>
+<dt>Returns:</dt><dd><p>Form10Q: a representation of the company’s 10Qs</p>
+</dd>
+<dt>Example:</dt><dd><p>Querying 10-Q reports for Apple Inc.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">ten_q</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="mi">2019</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">ten_q</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">2019</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">ten_q</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="s2">&quot;q1&quot;</span><span class="p">))</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">ten_q</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">2019</span><span class="p">,</span> <span class="s2">&quot;q1&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="s2">&quot;q2&quot;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="finpandas.core.datasources.Stocks">
+<em class="property">class </em><code class="sig-prename descclassname">finpandas.core.datasources.</code><code class="sig-name descname">Stocks</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'stocks'</span></em>, <em class="sig-param"><span class="n">username</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'finpandas'</span></em>, <em class="sig-param"><span class="n">password</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">_host</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'database-blacktip.cpeql2xeyjqq.us-east-2.rds.amazonaws.com'</span></em>, <em class="sig-param"><span class="n">_port</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">3306</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/finpandas/core/datasources.html#Stocks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.core.datasources.Stocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finpandas.core.connections.DatabaseConnection" title="finpandas.core.connections.DatabaseConnection"><code class="xref py py-class docutils literal notranslate"><span class="pre">finpandas.core.connections.DatabaseConnection</span></code></a></p>
+<p>Stocks API</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>database (str, optional): database to connect to. Defaults to ‘stocks’.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="finpandas.core.datasources.Stocks.database">
+<code class="sig-name descname">database</code><em class="property">: str</em><em class="property"> = 'stocks'</em><a class="headerlink" href="#finpandas.core.datasources.Stocks.database" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.core.datasources.Stocks.price">
+<code class="sig-name descname">price</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker_or_cik</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">period_start</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">period_end</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/core/datasources.html#Stocks.price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.core.datasources.Stocks.price" title="Permalink to this definition">¶</a></dt>
+<dd><p>queries the price of a given equity over a period</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>ticker_or_cik (Union[str,int]): company or fund’s ticker or SEC</dt><dd><p>issued Central Index Key (CIK)</p>
+</dd>
+<dt>period_start (str): the starting day for the period,</dt><dd><p>in year-month-day format (e.g. 2020-06-30).</p>
+</dd>
+<dt>period_end (str, optional): the ending day for the period,</dt><dd><p>in year-month-day format (e.g. 2020-06-30). Defaults to None,
+indicating a single day period_start.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: a representation of the company’s historical stock price</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.core.datasources.Stocks.sector">
+<code class="sig-name descname">sector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker_or_cik</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/finpandas/core/datasources.html#Stocks.sector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.core.datasources.Stocks.sector" title="Permalink to this definition">¶</a></dt>
+<dd><p>queries the sector of a given entity</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>ticker_or_cik (Union[str,int]): company or fund’s ticker or SEC</dt><dd><p>issued Central Index Key (CIK)</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>str: the sector</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-finpandas.core">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-finpandas.core" title="Permalink to this headline">¶</a></h2>
+<p>finpandas core utilities</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="finpandas.html" class="btn btn-neutral float-left" title="finpandas package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="finpandas.dataframes.html" class="btn btn-neutral float-right" title="finpandas.dataframes package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matthew Beveridge.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>finpandas.dataframes package &mdash; finpandas  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="finpandas.resources package" href="finpandas.resources.html" />
+    <link rel="prev" title="finpandas.core package" href="finpandas.core.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> finpandas
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="finpandas.html">finpandas package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="finpandas.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="finpandas.core.html">finpandas.core package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">finpandas.dataframes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-finpandas.dataframes.forms">finpandas.dataframes.forms module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-finpandas.dataframes.prices">finpandas.dataframes.prices module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-finpandas.dataframes">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="finpandas.resources.html">finpandas.resources package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finpandas.utils.html">finpandas.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finpandas.html#module-finpandas">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">finpandas</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="finpandas.html">finpandas package</a> &raquo;</li>
+      <li>finpandas.dataframes package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/finpandas.dataframes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="finpandas-dataframes-package">
+<h1>finpandas.dataframes package<a class="headerlink" href="#finpandas-dataframes-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-finpandas.dataframes.forms">
+<span id="finpandas-dataframes-forms-module"></span><h2>finpandas.dataframes.forms module<a class="headerlink" href="#module-finpandas.dataframes.forms" title="Permalink to this headline">¶</a></h2>
+<p>Abstract data types for US public fundamentals: 10K and 10Q.</p>
+<dl class="py class">
+<dt id="finpandas.dataframes.forms.Form">
+<em class="property">class </em><code class="sig-prename descclassname">finpandas.dataframes.forms.</code><code class="sig-name descname">Form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.core.frame.DataFrame</span></code></p>
+<p>Abstract Data Type for SEC forms. Subclass of pandas DataFrame.</p>
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form._constructor">
+<em class="property">property </em><code class="sig-name descname">_constructor</code><a class="headerlink" href="#finpandas.dataframes.forms.Form._constructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used when a manipulation result has the same dimensions as the
+original.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form._constructor_expanddim">
+<em class="property">property </em><code class="sig-name descname">_constructor_expanddim</code><a class="headerlink" href="#finpandas.dataframes.forms.Form._constructor_expanddim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form._constructor_sliced">
+<em class="property">property </em><code class="sig-name descname">_constructor_sliced</code><a class="headerlink" href="#finpandas.dataframes.forms.Form._constructor_sliced" title="Permalink to this definition">¶</a></dt>
+<dd><p>One-dimensional ndarray with axis labels (including time series).</p>
+<p>Labels need not be unique but must be a hashable type. The object
+supports both integer- and label-based indexing and provides a host of
+methods for performing operations involving the index. Statistical
+methods from ndarray have been overridden to automatically exclude
+missing data (currently represented as NaN).</p>
+<p>Operations between Series (+, -, /, <em>, *</em>) align values based on their
+associated index values– they need not be the same length. The result
+index will be the sorted union of the two indexes.</p>
+<dl class="simple">
+<dt>data<span class="classifier">array-like, Iterable, dict, or scalar value</span></dt><dd><p>Contains data stored in Series. If data is a dict, argument order is
+maintained.</p>
+</dd>
+<dt>index<span class="classifier">array-like or Index (1d)</span></dt><dd><p>Values must be hashable and have the same length as <cite>data</cite>.
+Non-unique index values are allowed. Will default to
+RangeIndex (0, 1, 2, …, n) if not provided. If data is dict-like
+and index is None, then the keys in the data are used as the index. If the
+index is not None, the resulting Series is reindexed with the index values.</p>
+</dd>
+<dt>dtype<span class="classifier">str, numpy.dtype, or ExtensionDtype, optional</span></dt><dd><p>Data type for the output Series. If not specified, this will be
+inferred from <cite>data</cite>.
+See the <span class="xref std std-ref">user guide</span> for more usages.</p>
+</dd>
+<dt>name<span class="classifier">str, optional</span></dt><dd><p>The name to give to the Series.</p>
+</dd>
+<dt>copy<span class="classifier">bool, default False</span></dt><dd><p>Copy input data. Only affects Series or 1d ndarray input. See examples.</p>
+</dd>
+</dl>
+<p>Constructing Series from a dictionary with an Index specified</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">a   1</span>
+<span class="go">b   2</span>
+<span class="go">c   3</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The keys of the dictionary match with the Index values, hence the Index
+values have no effect.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">x   NaN</span>
+<span class="go">y   NaN</span>
+<span class="go">z   NaN</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Note that the Index is first build with the keys from the dictionary.
+After this the Series is reindexed with the given Index values, hence we
+get all NaN as a result.</p>
+<p>Constructing Series from a list with <cite>copy=False</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">999</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span>
+<span class="go">[1, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0    999</span>
+<span class="go">1      2</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>Due to input data type the Series has a <cite>copy</cite> of
+the original data even though <cite>copy=False</cite>, so
+the data is unchanged.</p>
+<p>Constructing Series from a 1d ndarray with <cite>copy=False</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">999</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span>
+<span class="go">array([999,   2])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0    999</span>
+<span class="go">1      2</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>Due to input data type the Series has a <cite>view</cite> on
+the original data, so
+the data is changed as well.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form._format">
+<em class="property">static </em><code class="sig-name descname">_format</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form._format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form._format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.asset_sheet">
+<code class="sig-name descname">asset_sheet</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.asset_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.asset_sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>generates a data sheet of “Asset” values</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>pd.DataFrame: subset of the whole dataframe filtered by assets</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.asset_turnover">
+<code class="sig-name descname">asset_turnover</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.asset_turnover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.asset_turnover" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates asset turnover = revenue / assets</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the asset turnover</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.balance_sheet">
+<code class="sig-name descname">balance_sheet</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.balance_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.balance_sheet" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>TODO:</dt><dd><p>generates the balance sheet</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: subset of the whole dataframe filtered by values on a balance sheet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.book_value">
+<code class="sig-name descname">book_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.book_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.book_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the book value = total assets - total liabilities</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the book values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.cash_flow">
+<code class="sig-name descname">cash_flow</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.cash_flow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.cash_flow" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>TODO:</dt><dd><p>generates the cash flow statement</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: subset of the whole dataframe filtered by values on a cash flow statement</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.cash_turnover">
+<code class="sig-name descname">cash_turnover</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.cash_turnover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.cash_turnover" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates cash turnover = revenue / cash and cash equivalents
+at carrying value</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the cash turnover</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.current_asset_turnover">
+<code class="sig-name descname">current_asset_turnover</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.current_asset_turnover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.current_asset_turnover" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates current asset turnover = revenue / current assets</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the current asset turnover</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.current_ratio">
+<code class="sig-name descname">current_ratio</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.current_ratio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.current_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the current ratio = current assets / current liabilities</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the current ratio values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.debt_capitalization">
+<code class="sig-name descname">debt_capitalization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.debt_capitalization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.debt_capitalization" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates debt capitalization = liabilities / (liabilities + stockholder equity)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the debt capitalization</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.debt_sheet">
+<code class="sig-name descname">debt_sheet</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.debt_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.debt_sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>generates a data sheet of “Debt” values</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>pd.DataFrame: subset of the whole dataframe filtered by debts</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.debt_to_assets">
+<code class="sig-name descname">debt_to_assets</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.debt_to_assets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.debt_to_assets" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the debt-to-equity ratio = total liabilities / total assets</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the debt-to-assets ratio</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.debt_to_equity">
+<code class="sig-name descname">debt_to_equity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.debt_to_equity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.debt_to_equity" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the debt-to-equity ratio = total liabilities / total stockholders equity</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the debt-to-equity ratio</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.ebit">
+<code class="sig-name descname">ebit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.ebit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.ebit" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates EBIT = Net Income + Taxes</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the EBIT</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.ebitda">
+<code class="sig-name descname">ebitda</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.ebitda"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.ebitda" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates EBITDA = Net Income + Taxes + Depreciation + Amortization</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the EBITDA</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.effective_tax_rate">
+<code class="sig-name descname">effective_tax_rate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.effective_tax_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.effective_tax_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates effective tax rate = income tax / EBIT</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the effective tax rate</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.gross_margin">
+<code class="sig-name descname">gross_margin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.gross_margin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.gross_margin" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates gross margin</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the gross margin</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.inventory_turnover">
+<code class="sig-name descname">inventory_turnover</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.inventory_turnover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.inventory_turnover" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates inventory tower = revenue / inventory net</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the inventory turnover</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.liability_sheet">
+<code class="sig-name descname">liability_sheet</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.liability_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.liability_sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>generates a data sheet of “Liability” values</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>pd.DataFrame: subset of the whole dataframe filtered by liabilities</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.net_income">
+<code class="sig-name descname">net_income</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.net_income"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.net_income" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates net income</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the net income</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.net_working_capital">
+<code class="sig-name descname">net_working_capital</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.net_working_capital"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.net_working_capital" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates net working capital = current assets - liabilities</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the effective tax rate</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.net_working_capital_per_share">
+<code class="sig-name descname">net_working_capital_per_share</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.net_working_capital_per_share"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.net_working_capital_per_share" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates net working capital = current assets - liabilities</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the effective tax rate</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.quick_ratio">
+<code class="sig-name descname">quick_ratio</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.quick_ratio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.quick_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the quick ratio = (current assets - inventory) / current liabilities</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the quick ratio values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.receivables_turnover">
+<code class="sig-name descname">receivables_turnover</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.receivables_turnover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.receivables_turnover" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates receivables turnover = revenue / account receivable</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the receivables turnover</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.return_on_assets">
+<code class="sig-name descname">return_on_assets</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.return_on_assets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.return_on_assets" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates ROA = net income / average total assets</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the ROA values</p>
+</dd>
+<dt>TODO:</dt><dd><p>make sure values are interpreted correctly for 10Q/10K distinction</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.return_on_equity">
+<code class="sig-name descname">return_on_equity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.return_on_equity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.return_on_equity" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates ROE = net income / total stockholders equity</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the ROE values</p>
+</dd>
+<dt>TODO:</dt><dd><p>make sure values are interpreted correctly for 10Q/10K distinction</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.revenue">
+<code class="sig-name descname">revenue</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_list</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.revenue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.revenue" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates revenue</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>as_list (bool, optional): returns values as a list if True,</dt><dd><p>as a dataframe otherwise. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the revenue</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form.search">
+<code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">regex</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'tag'</span></em>, <em class="sig-param"><span class="n">axis</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>generates a data sheet based on a keyword regex</p>
+<dl>
+<dt>Args:</dt><dd><p>regex (str): the keyword regular expression
+index (str, optional): dataframe index to search along</p>
+<blockquote>
+<div><p>(“tag”, “uom”, “fy”, “fp”, etc.). Defaults to “tag”.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>axis (int, optional): the axis the index belongs to </dt><dd><p>(“tag”, “uom” on 0, “fy”, “fp” on 1). Defaults to 0.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: subset of the whole dataframe filtered by the regex</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="finpandas.dataframes.forms.Form10K">
+<em class="property">class </em><code class="sig-prename descclassname">finpandas.dataframes.forms.</code><code class="sig-name descname">Form10K</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form10K"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form10K" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finpandas.dataframes.forms.Form" title="finpandas.dataframes.forms.Form"><code class="xref py py-class docutils literal notranslate"><span class="pre">finpandas.dataframes.forms.Form</span></code></a></p>
+<p>Abstract Data Type for the SEC Form 10-K</p>
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form10K._format">
+<em class="property">static </em><code class="sig-name descname">_format</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form10K._format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form10K._format" title="Permalink to this definition">¶</a></dt>
+<dd><p>adds a column designating which source column dataframe values came from</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dataframe (pd.DataFrame): the raw content</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the formatted content</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="finpandas.dataframes.forms.Form10Q">
+<em class="property">class </em><code class="sig-prename descclassname">finpandas.dataframes.forms.</code><code class="sig-name descname">Form10Q</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form10Q"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form10Q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finpandas.dataframes.forms.Form" title="finpandas.dataframes.forms.Form"><code class="xref py py-class docutils literal notranslate"><span class="pre">finpandas.dataframes.forms.Form</span></code></a></p>
+<p>Abstract Data Type for the SEC Form 10-Q</p>
+<dl class="py method">
+<dt id="finpandas.dataframes.forms.Form10Q._format">
+<em class="property">static </em><code class="sig-name descname">_format</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/forms.html#Form10Q._format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.forms.Form10Q._format" title="Permalink to this definition">¶</a></dt>
+<dd><p>group source content into 10Q format</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dataframe (pd.DataFrame): the raw content</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the formatted content</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-finpandas.dataframes.prices">
+<span id="finpandas-dataframes-prices-module"></span><h2>finpandas.dataframes.prices module<a class="headerlink" href="#module-finpandas.dataframes.prices" title="Permalink to this headline">¶</a></h2>
+<p>Abstract data types for historical pricing.</p>
+<dl class="py class">
+<dt id="finpandas.dataframes.prices.HistoricalPrices">
+<em class="property">class </em><code class="sig-prename descclassname">finpandas.dataframes.prices.</code><code class="sig-name descname">HistoricalPrices</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/finpandas/dataframes/prices.html#HistoricalPrices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.prices.HistoricalPrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.core.frame.DataFrame</span></code></p>
+<p>Abstract Data Type for historical prices.
+Subclass of pandas DataFrame.</p>
+<dl class="py method">
+<dt id="finpandas.dataframes.prices.HistoricalPrices._constructor">
+<em class="property">property </em><code class="sig-name descname">_constructor</code><a class="headerlink" href="#finpandas.dataframes.prices.HistoricalPrices._constructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used when a manipulation result has the same dimensions as the
+original.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.prices.HistoricalPrices._constructor_expanddim">
+<em class="property">property </em><code class="sig-name descname">_constructor_expanddim</code><a class="headerlink" href="#finpandas.dataframes.prices.HistoricalPrices._constructor_expanddim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.prices.HistoricalPrices._constructor_sliced">
+<em class="property">property </em><code class="sig-name descname">_constructor_sliced</code><a class="headerlink" href="#finpandas.dataframes.prices.HistoricalPrices._constructor_sliced" title="Permalink to this definition">¶</a></dt>
+<dd><p>One-dimensional ndarray with axis labels (including time series).</p>
+<p>Labels need not be unique but must be a hashable type. The object
+supports both integer- and label-based indexing and provides a host of
+methods for performing operations involving the index. Statistical
+methods from ndarray have been overridden to automatically exclude
+missing data (currently represented as NaN).</p>
+<p>Operations between Series (+, -, /, <em>, *</em>) align values based on their
+associated index values– they need not be the same length. The result
+index will be the sorted union of the two indexes.</p>
+<dl class="simple">
+<dt>data<span class="classifier">array-like, Iterable, dict, or scalar value</span></dt><dd><p>Contains data stored in Series. If data is a dict, argument order is
+maintained.</p>
+</dd>
+<dt>index<span class="classifier">array-like or Index (1d)</span></dt><dd><p>Values must be hashable and have the same length as <cite>data</cite>.
+Non-unique index values are allowed. Will default to
+RangeIndex (0, 1, 2, …, n) if not provided. If data is dict-like
+and index is None, then the keys in the data are used as the index. If the
+index is not None, the resulting Series is reindexed with the index values.</p>
+</dd>
+<dt>dtype<span class="classifier">str, numpy.dtype, or ExtensionDtype, optional</span></dt><dd><p>Data type for the output Series. If not specified, this will be
+inferred from <cite>data</cite>.
+See the <span class="xref std std-ref">user guide</span> for more usages.</p>
+</dd>
+<dt>name<span class="classifier">str, optional</span></dt><dd><p>The name to give to the Series.</p>
+</dd>
+<dt>copy<span class="classifier">bool, default False</span></dt><dd><p>Copy input data. Only affects Series or 1d ndarray input. See examples.</p>
+</dd>
+</dl>
+<p>Constructing Series from a dictionary with an Index specified</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">a   1</span>
+<span class="go">b   2</span>
+<span class="go">c   3</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The keys of the dictionary match with the Index values, hence the Index
+values have no effect.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">x   NaN</span>
+<span class="go">y   NaN</span>
+<span class="go">z   NaN</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Note that the Index is first build with the keys from the dictionary.
+After this the Series is reindexed with the given Index values, hence we
+get all NaN as a result.</p>
+<p>Constructing Series from a list with <cite>copy=False</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">999</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span>
+<span class="go">[1, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0    999</span>
+<span class="go">1      2</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>Due to input data type the Series has a <cite>copy</cite> of
+the original data even though <cite>copy=False</cite>, so
+the data is unchanged.</p>
+<p>Constructing Series from a 1d ndarray with <cite>copy=False</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">999</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span>
+<span class="go">array([999,   2])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0    999</span>
+<span class="go">1      2</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>Due to input data type the Series has a <cite>view</cite> on
+the original data, so
+the data is changed as well.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="finpandas.dataframes.prices.HistoricalPrices._format">
+<em class="property">static </em><code class="sig-name descname">_format</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/prices.html#HistoricalPrices._format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.prices.HistoricalPrices._format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="finpandas.dataframes.prices.HistoricalStockPrices">
+<em class="property">class </em><code class="sig-prename descclassname">finpandas.dataframes.prices.</code><code class="sig-name descname">HistoricalStockPrices</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/finpandas/dataframes/prices.html#HistoricalStockPrices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.prices.HistoricalStockPrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#finpandas.dataframes.prices.HistoricalPrices" title="finpandas.dataframes.prices.HistoricalPrices"><code class="xref py py-class docutils literal notranslate"><span class="pre">finpandas.dataframes.prices.HistoricalPrices</span></code></a></p>
+<p>Abstract Data Type for historical stock prices</p>
+<dl class="py method">
+<dt id="finpandas.dataframes.prices.HistoricalStockPrices._format">
+<em class="property">static </em><code class="sig-name descname">_format</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="reference internal" href="_modules/finpandas/dataframes/prices.html#HistoricalStockPrices._format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#finpandas.dataframes.prices.HistoricalStockPrices._format" title="Permalink to this definition">¶</a></dt>
+<dd><p>group source content into a usable format</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dataframe (pd.DataFrame): the raw content</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: the formatted content</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-finpandas.dataframes">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-finpandas.dataframes" title="Permalink to this headline">¶</a></h2>
+<p>modified dataframe classes</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="finpandas.core.html" class="btn btn-neutral float-left" title="finpandas.core package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="finpandas.resources.html" class="btn btn-neutral float-right" title="finpandas.resources package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matthew Beveridge.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>finpandas.dataframes.forms &mdash; finpandas  documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> finpandas
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../finpandas.html">finpandas package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">finpandas</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>finpandas.dataframes.forms</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for finpandas.dataframes.forms</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Abstract data types for US public fundamentals: 10K and 10Q.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">regex</span> <span class="k">as</span> <span class="nn">re</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="c1"># pylint: disable=too-many-public-methods</span>
+<span class="c1"># pylint: disable=too-many-ancestors</span>
+<div class="viewcode-block" id="Form"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form">[docs]</a><span class="k">class</span> <span class="nc">Form</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract Data Type for SEC forms. Subclass of pandas DataFrame.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            dataframe (pd.DataFrame): the form content</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_format</span><span class="p">(</span><span class="n">dataframe</span><span class="p">))</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_constructor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Form</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_constructor_sliced</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_constructor_expanddim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Form</span>
+
+
+<div class="viewcode-block" id="Form._format"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form._format">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_format</span><span class="p">(</span><span class="n">dataframe</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+    
+<div class="viewcode-block" id="Form.search"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.search">[docs]</a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regex</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>   
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        generates a data sheet based on a keyword regex</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            regex (str): the keyword regular expression</span>
+<span class="sd">            index (str, optional): dataframe index to search along </span>
+<span class="sd">                (&quot;tag&quot;, &quot;uom&quot;, &quot;fy&quot;, &quot;fp&quot;, etc.). Defaults to &quot;tag&quot;.</span>
+<span class="sd">            axis (int, optional): the axis the index belongs to </span>
+<span class="sd">                (&quot;tag&quot;, &quot;uom&quot; on 0, &quot;fy&quot;, &quot;fp&quot; on 1). Defaults to 0.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: subset of the whole dataframe filtered by the regex</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># return self.loc[self.index.get_level_values(index).str.contains(regex)] # old</span>
+        <span class="n">matcher</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">matcher</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loc</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)[</span><span class="n">values</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="Form.asset_sheet"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.asset_sheet">[docs]</a>    <span class="k">def</span> <span class="nf">asset_sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        generates a data sheet of &quot;Asset&quot; values</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: subset of the whole dataframe filtered by assets</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;Asset|Assets&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Form.liability_sheet"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.liability_sheet">[docs]</a>    <span class="k">def</span> <span class="nf">liability_sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        generates a data sheet of &quot;Liability&quot; values</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: subset of the whole dataframe filtered by liabilities</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;Liability|Liabilities&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Form.debt_sheet"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.debt_sheet">[docs]</a>    <span class="k">def</span> <span class="nf">debt_sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        generates a data sheet of &quot;Debt&quot; values</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: subset of the whole dataframe filtered by debts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;Debt|Debts&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Form.balance_sheet"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.balance_sheet">[docs]</a>    <span class="k">def</span> <span class="nf">balance_sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        TODO:</span>
+<span class="sd">            generates the balance sheet</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: subset of the whole dataframe filtered by values on a balance sheet</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Form.cash_flow"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.cash_flow">[docs]</a>    <span class="k">def</span> <span class="nf">cash_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        TODO:</span>
+<span class="sd">            generates the cash flow statement</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: subset of the whole dataframe filtered by values on a cash flow statement</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Form.book_value"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.book_value">[docs]</a>    <span class="k">def</span> <span class="nf">book_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates the book value = total assets - total liabilities</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the book values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^Assets$&quot;</span><span class="p">)</span>
+        <span class="n">liabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^Liabilities$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">assets</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">assets</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;BookValue&quot;</span><span class="p">,</span> <span class="s2">&quot;USD&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">assets</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">liabilities</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.current_ratio"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.current_ratio">[docs]</a>    <span class="k">def</span> <span class="nf">current_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates the current ratio = current assets / current liabilities</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the current ratio values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">current_assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^AssetsCurrent$&quot;</span><span class="p">)</span>
+        <span class="n">current_liabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^LiabilitiesCurrent$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">current_assets</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">current_assets</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;CurrentRatio&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_assets</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">current_liabilities</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.quick_ratio"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.quick_ratio">[docs]</a>    <span class="k">def</span> <span class="nf">quick_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates the quick ratio = (current assets - inventory) / current liabilities</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the quick ratio values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">current_assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^AssetsCurrent$&quot;</span><span class="p">)</span>
+        <span class="n">inventory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^InventoryNet$&quot;</span><span class="p">)</span>
+        <span class="n">current_liabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^LiabilitiesCurrent$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">current_assets</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">current_assets</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;QuickRatio&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">current_assets</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inventory</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> \
+                <span class="o">/</span> <span class="n">current_liabilities</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.return_on_assets"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.return_on_assets">[docs]</a>    <span class="k">def</span> <span class="nf">return_on_assets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates ROA = net income / average total assets</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the ROA values</span>
+
+<span class="sd">        TODO:</span>
+<span class="sd">            make sure values are interpreted correctly for 10Q/10K distinction</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">net_income</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net_income</span><span class="p">()</span>
+        <span class="n">total_assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^Assets$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">net_income</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">net_income</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;ReturnOnAssets&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">net_income</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">total_assets</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.return_on_equity"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.return_on_equity">[docs]</a>    <span class="k">def</span> <span class="nf">return_on_equity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates ROE = net income / total stockholders equity</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the ROE values</span>
+
+<span class="sd">        TODO:</span>
+<span class="sd">            make sure values are interpreted correctly for 10Q/10K distinction</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">net_income</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">net_income</span><span class="p">()</span>
+        <span class="n">stockholders_equity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^StockholdersEquity$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">net_income</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">net_income</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;ReturnOnEquity&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">net_income</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">stockholders_equity</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.debt_to_equity"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.debt_to_equity">[docs]</a>    <span class="k">def</span> <span class="nf">debt_to_equity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates the debt-to-equity ratio = total liabilities / total stockholders equity</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the debt-to-equity ratio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total_liabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^Liabilities$&quot;</span><span class="p">)</span>
+        <span class="n">stockholders_equity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^StockholdersEquity$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">total_liabilities</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">total_liabilities</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;DebtToEquity&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_liabilities</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">stockholders_equity</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.debt_to_assets"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.debt_to_assets">[docs]</a>    <span class="k">def</span> <span class="nf">debt_to_assets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates the debt-to-equity ratio = total liabilities / total assets</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the debt-to-assets ratio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total_liabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^Liabilities$&quot;</span><span class="p">)</span>
+        <span class="n">total_assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^Assets$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">total_liabilities</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">total_liabilities</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;DebtToAssets&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_liabilities</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">total_assets</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.ebit"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.ebit">[docs]</a>    <span class="k">def</span> <span class="nf">ebit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates EBIT = Net Income + Taxes</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the EBIT</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># ebit = self.search(</span>
+        <span class="c1">#     &quot;^IncomeLossFromContinuingOperationsBefore&quot;</span>
+        <span class="c1">#     &quot;IncomeTaxesExtraordinaryItemsNoncontrollingInterest$&quot;</span>
+        <span class="c1"># )</span>
+        <span class="n">ebit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^OperatingIncomeLoss$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">ebit</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">ebit</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;EBIT&quot;</span><span class="p">,</span> <span class="s2">&quot;USD&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">ebit</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.ebitda"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.ebitda">[docs]</a>    <span class="k">def</span> <span class="nf">ebitda</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates EBITDA = Net Income + Taxes + Depreciation + Amortization</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the EBITDA</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ebit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ebit</span><span class="p">()</span>
+        <span class="n">depreciation_and_amortization_regexes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;^DepreciationDepletionAndAmortization$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;DepreciationAmortizationAndImpairment&quot;</span>
+        <span class="p">]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">depreciation_and_amortization</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+            <span class="n">depreciation_and_amortization_regexes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">while</span> <span class="n">depreciation_and_amortization</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="n">depreciation_and_amortization</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+                <span class="n">depreciation_and_amortization_regexes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># if depreciation_and_amortization.empty:</span>
+        <span class="c1">#     # depreciation_and_amortization = self.search(&quot;(?=.*Depreciation)(?=.*Amortization)&quot;)</span>
+        <span class="c1">#     depreciation_and_amortization = self.search(</span>
+        <span class="c1">#         &quot;DepreciationAmortizationAndImpairmentOnDisposit&quot;</span>
+        <span class="c1">#     )</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">ebit</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">ebit</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;EBITDA&quot;</span><span class="p">,</span> <span class="s2">&quot;USD&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">ebit</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">depreciation_and_amortization</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.gross_margin"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.gross_margin">[docs]</a>    <span class="k">def</span> <span class="nf">gross_margin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates gross margin</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the gross margin</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">gross_margin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^GrossProfit$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">gross_margin</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">gross_margin</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;GrossMargin&quot;</span><span class="p">,</span> <span class="s2">&quot;USD&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">gross_margin</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.debt_capitalization"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.debt_capitalization">[docs]</a>    <span class="k">def</span> <span class="nf">debt_capitalization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates debt capitalization = liabilities / (liabilities + stockholder equity)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the debt capitalization</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">liabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^Liabilities$&quot;</span><span class="p">)</span>
+        <span class="n">stockholders_equity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^StockholdersEquity$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">liabilities</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">liabilities</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;DebtCapitalization&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">liabilities</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> \
+                <span class="p">(</span><span class="n">liabilities</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">stockholders_equity</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.revenue"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.revenue">[docs]</a>    <span class="k">def</span> <span class="nf">revenue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates revenue</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the revenue</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+            <span class="s2">&quot;^RevenueFromContractWithCustomerExcludingAssessedTax$&quot;</span>
+            <span class="s2">&quot;|^Revenues$&quot;</span>
+            <span class="s2">&quot;|^SalesRevenueNet$&quot;</span>
+            <span class="s2">&quot;|RevenueFromContractWithCustomerIncludingAssessedTax$&quot;</span>
+            <span class="c1"># &quot;|^SalesRevenueGoodsNet$&quot;</span>
+            <span class="c1"># &quot;|^SalesRevenueServicesNet$&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;ffill&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;bfill&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;Revenue&quot;</span><span class="p">,</span> <span class="s2">&quot;USD&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">revenue</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.inventory_turnover"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.inventory_turnover">[docs]</a>    <span class="k">def</span> <span class="nf">inventory_turnover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates inventory tower = revenue / inventory net</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the inventory turnover</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">revenue</span><span class="p">()</span>
+        <span class="n">inventory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^InventoryNet$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;InventoryTurnover&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">revenue</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">inventory</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.cash_turnover"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.cash_turnover">[docs]</a>    <span class="k">def</span> <span class="nf">cash_turnover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates cash turnover = revenue / cash and cash equivalents</span>
+<span class="sd">        at carrying value</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the cash turnover</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">revenue</span><span class="p">()</span>
+        <span class="n">cash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^CashAndCashEquivalentsAtCarryingValue$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;CashTurnover&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">revenue</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">cash</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.asset_turnover"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.asset_turnover">[docs]</a>    <span class="k">def</span> <span class="nf">asset_turnover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates asset turnover = revenue / assets</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the asset turnover</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">revenue</span><span class="p">()</span>
+        <span class="n">assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^Assets$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;AssetTurnover&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">revenue</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">assets</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.current_asset_turnover"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.current_asset_turnover">[docs]</a>    <span class="k">def</span> <span class="nf">current_asset_turnover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates current asset turnover = revenue / current assets</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the current asset turnover</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">revenue</span><span class="p">()</span>
+        <span class="n">current_assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^AssetsCurrent$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;CurrentAssetTurnover&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">revenue</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">current_assets</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.receivables_turnover"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.receivables_turnover">[docs]</a>    <span class="k">def</span> <span class="nf">receivables_turnover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates receivables turnover = revenue / account receivable</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the receivables turnover</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">revenue</span><span class="p">()</span>
+        <span class="n">accounts_receibale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^AccountsReceivableNetCurrent$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;ReceivablesTurnover&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">revenue</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">accounts_receibale</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.effective_tax_rate"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.effective_tax_rate">[docs]</a>    <span class="k">def</span> <span class="nf">effective_tax_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates effective tax rate = income tax / EBIT</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the effective tax rate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">income_tax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^IncomeTaxExpenseBenefit$&quot;</span><span class="p">)</span>
+        <span class="n">ebit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ebit</span><span class="p">()</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">income_tax</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">income_tax</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;EffectiveTaxRate&quot;</span><span class="p">,</span> <span class="s2">&quot;ratio&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">income_tax</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">ebit</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.net_working_capital"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.net_working_capital">[docs]</a>    <span class="k">def</span> <span class="nf">net_working_capital</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates net working capital = current assets - liabilities</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the effective tax rate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">current_assets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^AssetsCurrent$&quot;</span><span class="p">)</span>
+        <span class="n">current_liabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^LiabilitiesCurrent$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">current_assets</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">current_assets</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;NetWorkingCapital&quot;</span><span class="p">,</span> <span class="s2">&quot;USD&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_assets</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">current_liabilities</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.net_working_capital_per_share"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.net_working_capital_per_share">[docs]</a>    <span class="k">def</span> <span class="nf">net_working_capital_per_share</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates net working capital = current assets - liabilities</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the effective tax rate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">net_working_capital</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net_working_capital</span><span class="p">()</span>
+        <span class="n">shares</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^CommonStockSharesOutstanding$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">net_working_capital</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">net_working_capital</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;NetWorkingCapitalPerShare&quot;</span><span class="p">,</span> <span class="s2">&quot;USD&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">net_working_capital</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">shares</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="Form.net_income"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form.net_income">[docs]</a>    <span class="k">def</span> <span class="nf">net_income</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_list</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculates net income</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            as_list (bool, optional): returns values as a list if True,</span>
+<span class="sd">                as a dataframe otherwise. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the net income</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">net_income</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;^NetIncomeLoss$&quot;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="n">net_income</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">net_income</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s2">&quot;NetIncome&quot;</span><span class="p">,</span> <span class="s2">&quot;USD&quot;</span><span class="p">)])</span>
+
+        <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">net_income</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">as_list</span> <span class="k">else</span> <span class="n">dataframe</span></div></div>
+
+<span class="c1">######## Fundementals Task (FEB 10) #########</span>
+
+    <span class="c1"># def price_to_earnings(self, as_list:bool=False) -&gt; pd.DataFrame:</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     calculates price to earnings (stock price/earnings per share)</span>
+
+    <span class="c1">#     Args:</span>
+    <span class="c1">#         as_list (bool, optional): returns values as a list if True,</span>
+    <span class="c1">#             as a dataframe otherwise. Defaults to False.</span>
+
+    <span class="c1">#     Returns:</span>
+    <span class="c1">#         pd.DataFrame: price to earnings</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     net_income_loss = self.search(&quot;^NetIncomeLoss$&quot;)</span>
+    <span class="c1">#     common_shares_outstanding = self.search(&quot;^CommonSharesOutstanding$&quot;)</span>
+    <span class="c1">#     years = net_income_loss.columns.to_list()</span>
+    <span class="c1">#     dataframe = net_income_loss.reindex([(&quot;NetIncome&quot;, &quot;USD&quot;)])</span>
+
+    <span class="c1">#     for year in years:</span>
+    <span class="c1">#         dataframe[year] = net_income[year][0]</span>
+
+    <span class="c1">#     return dataframe.values[0] if as_list else dataframe</span>
+
+
+    <span class="c1"># def piotroski_f_score(self, as_list:bool=False) -&gt; pd.DataFrame:</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     calculates Piotroski F-Score</span>
+
+    <span class="c1">#     Args:</span>
+    <span class="c1">#         as_list (bool, optional): returns values as a list if True,</span>
+    <span class="c1">#             as a dataframe otherwise. Defaults to False.</span>
+
+    <span class="c1">#     Returns:</span>
+    <span class="c1">#         pd.DataFrame: the Piotroski F-Score</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     return_on_assets = self.return_on_assets()</span>
+    <span class="c1">#     net_cash = self.search(&quot;^NetCashProvidedByUsedInOperatingActivities$&quot;)</span>
+    <span class="c1">#     net_income = self.net_income()</span>
+    <span class="c1">#     gross_profit_t = self.search(&quot;^G&quot;)</span>
+
+    <span class="c1">#     years = net_working_capital.columns.to_list()</span>
+    <span class="c1">#     dataframe = net_working_capital.reindex([(&quot;NetWorkingCapitalPerShare&quot;, &quot;USD&quot;)])</span>
+
+    <span class="c1">#     for year in years:</span>
+    <span class="c1">#         dataframe[year] = net_working_capital[year][0] / shares[year][0]</span>
+
+    <span class="c1">#     return dataframe.values[0] if as_list else dataframe</span>
+
+
+<div class="viewcode-block" id="Form10K"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form10K">[docs]</a><span class="k">class</span> <span class="nc">Form10K</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract Data Type for the SEC Form 10-K</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Form10K._format"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form10K._format">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_format</span><span class="p">(</span><span class="n">dataframe</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        adds a column designating which source column dataframe values came from</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dataframe (pd.DataFrame): the raw content</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the formatted content</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+            <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;uom&quot;</span><span class="p">,</span> <span class="s2">&quot;ddate&quot;</span><span class="p">,</span> <span class="s2">&quot;fye&quot;</span><span class="p">],</span>
+            <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;fy&quot;</span><span class="p">,</span>
+            <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+            <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;max&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">dataframe</span><span class="p">[</span><span class="s2">&quot;monthday&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="s2">&quot;ddate&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{:02d}{:02d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">filtered</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataframe</span><span class="p">[</span><span class="s2">&quot;monthday&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="s2">&quot;fye&quot;</span><span class="p">)]</span>
+        <span class="n">grouped</span> <span class="o">=</span> <span class="n">filtered</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;uom&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">grouped</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;monthday&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div></div>
+
+
+
+<div class="viewcode-block" id="Form10Q"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form10Q">[docs]</a><span class="k">class</span> <span class="nc">Form10Q</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract Data Type for the SEC Form 10-Q</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Form10Q._format"><a class="viewcode-back" href="../../../finpandas.dataframes.html#finpandas.dataframes.forms.Form10Q._format">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_format</span><span class="p">(</span><span class="n">dataframe</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        group source content into 10Q format</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dataframe (pd.DataFrame): the raw content</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: the formatted content</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+            <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;uom&quot;</span><span class="p">,</span> <span class="s2">&quot;ddate&quot;</span><span class="p">],</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;fy&quot;</span><span class="p">,</span> <span class="s2">&quot;fp&quot;</span><span class="p">],</span>
+            <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+            <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;min&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;uom&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">last</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matthew Beveridge.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
