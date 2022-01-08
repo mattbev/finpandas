@@ -9,7 +9,7 @@ Toolkit for U.S. public sector financial analysis. Compare multiple companies ac
 
 **stocks:** for historical stock pricing information on United States public companies.
 
-[Documentation](https://finpandas.readthedocs.io/en/latest/index.html)
+[Documentation](https://mattbeveridge.com/finpandas)
 
 ## Installation
 `finpandas` can be installed using `pip`:
